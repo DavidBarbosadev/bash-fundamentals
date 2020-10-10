@@ -1,0 +1,99 @@
+area_sphere(){
+echo Enter the value of the radius in cm :
+read radius
+area=`echo "4*3.1415926535*($radius^2)"|bc`
+echo "The Surface area of the sphere is $area cm2"
+}
+
+area_cone(){
+echo Enter the value of the Base Radius in cm :
+read base_radius
+echo Enter the value of the Height in cm :
+read height
+area=`echo "(3.1415926535*$base_radius)*($base_radius+(sqrt(($base_radius^2)+($height^2))))"|bc`
+echo "The Surface area of the cone is $area cm2"
+}
+
+area_cylinder(){
+echo Enter the value of the Radius in cm :
+read radius
+echo Enter the value of the Height in cm :
+read height
+area=`echo "2*3.1415926535*$radius*($radius+$height)"|bc`
+echo "The Surface area of the cylinder is $area cm2"
+}
+
+area_cube(){
+echo Enter the value of the edge length in cm :
+read edge_length
+area=`echo "6*($edge_length^2)"|bc`
+echo "The Surface area of the cube is $area cm2"
+}
+
+area_cuboid(){
+echo Enter the value of the length in cm :
+read length
+echo Enter the value of the width in cm :
+read width
+echo Enter the value of the height in cm :
+read height
+area=`echo "(2*$length*$width)+(2*$length*$height)+(2*$width*$height)"|bc`
+echo "The Surface area of the cuboid is $area cm2"
+}
+
+echo ---------------------------------------------
+echo *********Surface Area Calculator************
+echo ---------------------------------------------
+echo 1. Surface Area of Sphere
+echo 2. Surface Area of Cone
+echo 3. Surface Area of Cylinder
+echo 4. Surface Area of Cube
+echo 5. Surface Area of Cuboid
+echo 6. Exit
+
+x=0
+
+while [ $x = 0 ]
+do
+        echo "Which Surface Area do you want to calculate?"
+        read input
+
+        case "$input" in
+                1)
+                echo "You chose to calculate the Surface area of Sphere"
+                area_sphere
+                x=error
+                ;;
+                2)
+                echo "you chose to calculate the Surface area of Cone"
+                area_cone
+                x=error
+                ;;
+                3)
+                echo "you chose to calculate the Surface area of Cylinder"
+                area_cylinder
+                x=error
+                ;;
+                4)
+                echo "you chose to calculate the Surface area of Cube"
+                area_cube
+                x=error
+                ;;
+                5)
+                echo "you chose to calculate the surface area of Cuboid"
+                area_cuboid
+                x=error
+                ;;
+                6)
+                echo "you chose to leave the program!!!"
+                if [[ $input = "6" ]]
+                        then exit 1
+                fi
+                x=error
+                ;;
+                *)
+                echo "Please select another option, this one does not exist"
+                sleep 1
+        esac
+
+done
